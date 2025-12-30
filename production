@@ -1,0 +1,8 @@
+web_servers:
+    hosts:
+        galvatron:
+            hostname: galvatron.mantor.org
+            ansible_host: 45.76.2.117
+        # megatron:
+        #     hostname: megatron.mantor.org
+        #     ansible_host: 207.148.30.212
