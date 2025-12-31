@@ -1,3 +1,4 @@
+---
 - name: Install prerequisites
   hosts: web_servers
   become: true
@@ -5,6 +6,7 @@
   vars_files:
     - vars/secrets.yml
   roles:
-    - { role: prerequisites }
-  tags:
     - prerequisites
+    - hackfest
+  tags:
+    - setup

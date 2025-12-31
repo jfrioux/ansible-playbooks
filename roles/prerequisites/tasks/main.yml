@@ -1,3 +1,4 @@
+---
 - name: Set timezone
   ansible.builtin.file:
     src: /usr/share/zoneinfo/America/Montreal
@@ -18,32 +19,6 @@
       - git
       - slurm
     state: present
-
-- name: Ensure user hackfest is present
-  user:
-    name: hackfest
-    password: "{{ hackfest_pw }}"
-    shell: /bin/ksh
-    groups: wheel
-    append: true
-    state: present
-    create_home: yes
-
-- name: Deploy SSH Bitbucket Private Key
-  copy:
-    content: "{{ hackfest_bitbucket_key }}"
-    dest: "/home/hackfest/.ssh/{{hackfest_keyname}}"
-    owner: "hackfest"
-    group: "hackfest"
-    mode: '0600'
-
-- name: Deploy SSH Bitbucket Public Key
-  copy:
-    content: "{{ hackfest_bitbucket_key_pub }}"
-    dest: "/home/hackfest/.ssh/{{hackfest_keyname}}.pub"
-    owner: "hackfest"
-    group: "hackfest"
-    mode: '0644'
 
 - name: Ensure root alias is set to root@mantor.org
   ansible.builtin.lineinfile:
