@@ -4,6 +4,7 @@
     dest: /etc/localtime
     state: link
     force: true
+  notify: restart ntpd
 
 - name: Enable and start ntpd
   ansible.builtin.service:
@@ -43,3 +44,10 @@
     owner: "hackfest"
     group: "hackfest"
     mode: '0644'
+
+- name: Ensure root alias is set to root@mantor.org
+  ansible.builtin.lineinfile:
+    path: /etc/mail/aliases
+    regexp: '^root:'
+    line: 'root: root@mantor.org'
+  notify: update aliases
